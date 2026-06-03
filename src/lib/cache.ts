@@ -28,36 +28,12 @@ async function getMarketSearch() {
 }
 
 /**
- * Retrieves the pool summary data for one/many blockchain(s)
- */
-async function getPools() {
-  const btsPools = await getCollection("btsPools");
-  const testPools = await getCollection("testPools");
-  return { bitshares: btsPools, bitshares_testnet: testPools };
-}
-
-async function getMinPools() {
-  const btsMinPools = await getCollection("btsMinPools");
-  const testMinPools = await getCollection("testMinPools");
-  return { bitshares: btsMinPools, bitshares_testnet: testMinPools };
-}
-
-/**
  * Retrieves the minimum bitassets for one/many blockchain(s)
  */
 async function getMinBitassets() {
   const btsMinBitassets = await getCollection("btsMinBitassets");
   const testMinBitassets = await getCollection("testMinBitassets");
   return { bitshares: btsMinBitassets, bitshares_testnet: testMinBitassets };
-}
-
-/**
- * Retrieves the active offers for one/many blockchain(s)
- */
-async function getActiveOffers() {
-  const btsOffers = await getCollection("btsOffers");
-  const testOffers = await getCollection("testOffers");
-  return { bitshares: btsOffers, bitshares_testnet: testOffers };
 }
 
 /**
@@ -115,36 +91,12 @@ async function getDynamicData(chain: string, id: string) {
   return foundDynamicData;
 }
 
-/**
- * Retrieves the requested pool from cached assets
- */
-async function getPool(chain: string, id: string) {
-  let foundPool;
-  if (chain === "bitshares") {
-    const btsAllPools = await getCollection("btsAllPools");
-    foundPool = btsAllPools.find((asset: any) => asset.id === id);
-  } else if (chain === "bitshares_testnet") {
-    const testAllPools = await getCollection("testAllPools");
-    foundPool = testAllPools.find((asset: any) => asset.id === id);
-  }
-
-  if (!foundPool) {
-    throw new Error("Pool not found");
-  }
-
-  return foundPool;
-}
-
 export {
   getFeeSchedule,
   getAsset,
-  getPool,
   getDynamicData,
   getMarketSearch,
   getAllAssets,
   getMinAssets,
-  getPools,
-  getMinPools,
   getMinBitassets,
-  getActiveOffers,
 };

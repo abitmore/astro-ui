@@ -8,18 +8,6 @@ contextBridge.exposeInMainWorld("electron", {
     ipcRenderer.invoke("faucetRegistration", args),
   genKey: async () => ipcRenderer.invoke("genKey"),
   genAccount: async (args) => ipcRenderer.invoke("genAccount", args),
-  // REST queries
-  fetchTopMarkets: async (args) => ipcRenderer.invoke("fetchTopMarkets", args),
-  fetchAccountHistory: async (args) =>
-    ipcRenderer.invoke("fetchAccountHistory", args),
-  // WS queries
-  requestBlocks: async (args) => ipcRenderer.send("requestBlocks", args),
-  onBlockResponse: (func) => {
-    ipcRenderer.on("blockResponse", (event, data) => {
-      func(data);
-    });
-  },
-  stopBlocks: async () => ipcRenderer.send("stopBlocks", args),
   // API queries
   generateDeepLink: async (args) =>
     ipcRenderer.invoke("generateDeepLink", args),

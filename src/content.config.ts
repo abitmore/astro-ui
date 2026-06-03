@@ -56,167 +56,6 @@ const testFeeSchedule = defineCollection({
   schema: feeSchema,
 });
 
-const offerSchema = z.object({
-  id: z.string(),
-  owner_account: z.string(),
-  asset_type: z.string(),
-  total_balance: z.union([z.string(), z.number()]),
-  current_balance: z.union([z.string(), z.number()]),
-  fee_rate: z.number(),
-  max_duration_seconds: z.number(),
-  min_deal_amount: z.number(),
-  enabled: z.boolean(),
-  auto_disable_time: z.string(),
-  acceptable_collateral: z.array(
-    z.tuple([
-      z.string(),
-      z.object({
-        base: z.object({
-          amount: z.number(),
-          asset_id: z.string(),
-        }),
-        quote: z.object({
-          amount: z.number(),
-          asset_id: z.string(),
-        }),
-      }),
-    ]),
-  ),
-  acceptable_borrowers: z.array(z.unknown()),
-  owner_name: z.string(),
-});
-
-const btsOffers = defineCollection({
-  loader: file("./src/data/bitshares/allOffers.json", {
-    parser: (text) => {
-      const offers = JSON.parse(text);
-      return offers
-        .filter((x) => x.enabled === true)
-        .filter((x) => x.fee_rate < 500000); // max fee rate of 50%
-    },
-  }),
-  schema: offerSchema,
-});
-
-const testOffers = defineCollection({
-  loader: file("./src/data/bitshares_testnet/allOffers.json", {
-    parser: (text) => {
-      const offers = JSON.parse(text);
-      return offers.filter((x) => x.enabled === true);
-    },
-  }),
-  schema: offerSchema,
-});
-
-const poolSchema = z.object({
-  id: z.string(),
-  asset_a_id: z.string(),
-  asset_a_symbol: z.string(),
-  asset_b_id: z.string(),
-  asset_b_symbol: z.string(),
-  share_asset_symbol: z.string(),
-  share_asset_id: z.string(),
-  balance_a: z.union([z.string(), z.number()]),
-  balance_b: z.union([z.string(), z.number()]),
-  taker_fee_percent: z.number(),
-  withdrawal_fee_percent: z.number(),
-});
-
-const btsPools = defineCollection({
-  loader: file("./src/data/bitshares/pools.json", {
-    parser: (text) => {
-      try {
-        const pools = JSON.parse(text);
-        console.log("Successfully parsed pools:", pools.length);
-        return pools;
-      } catch (error) {
-        console.error("Error parsing JSON from pools.json:", error);
-        throw error;
-      }
-    },
-  }),
-  schema: poolSchema,
-});
-
-const testPools = defineCollection({
-  loader: file("./src/data/bitshares_testnet/pools.json", {
-    parser: (text) => {
-      try {
-        const pools = JSON.parse(text);
-        console.log("Successfully parsed test pools:", pools.length);
-        return pools;
-      } catch (error) {
-        console.error("Error parsing JSON from pools.json:", error);
-        throw error;
-      }
-    },
-  }),
-  schema: poolSchema,
-});
-
-const allPoolSchema = z.object({
-  id: z.string(),
-  asset_a: z.string(),
-  asset_b: z.string(),
-  balance_a: z.union([z.string(), z.number()]),
-  balance_b: z.union([z.string(), z.number()]),
-  share_asset: z.string(),
-  taker_fee_percent: z.number(),
-  withdrawal_fee_percent: z.number(),
-  virtual_value: z.string(),
-  statistics: z.object({
-    id: z.string(),
-    _24h_deposit_count: z.number(),
-    _24h_deposit_amount_a: z.string(),
-    _24h_deposit_amount_b: z.string(),
-    _24h_deposit_share_amount: z.string(),
-    _24h_withdrawal_count: z.number(),
-    _24h_withdrawal_amount_a: z.string(),
-    _24h_withdrawal_amount_b: z.string(),
-    _24h_withdrawal_share_amount: z.string(),
-    _24h_withdrawal_fee_a: z.string(),
-    _24h_withdrawal_fee_b: z.string(),
-    _24h_exchange_a2b_count: z.number(),
-    _24h_exchange_a2b_amount_a: z.string(),
-    _24h_exchange_a2b_amount_b: z.string(),
-    _24h_exchange_b2a_count: z.number(),
-    _24h_exchange_b2a_amount_a: z.string(),
-    _24h_exchange_b2a_amount_b: z.string(),
-    _24h_exchange_fee_a: z.string(),
-    _24h_exchange_fee_b: z.string(),
-    _24h_balance_delta_a: z.union([z.number(), z.string()]),
-    _24h_balance_delta_b: z.union([z.number(), z.string()]),
-    total_deposit_count: z.number(),
-    total_deposit_amount_a: z.string(),
-    total_deposit_amount_b: z.string(),
-    total_deposit_share_amount: z.string(),
-    total_withdrawal_count: z.number(),
-    total_withdrawal_amount_a: z.string(),
-    total_withdrawal_amount_b: z.string(),
-    total_withdrawal_share_amount: z.string(),
-    total_withdrawal_fee_a: z.string(),
-    total_withdrawal_fee_b: z.string(),
-    total_exchange_a2b_count: z.number(),
-    total_exchange_a2b_amount_a: z.string(),
-    total_exchange_a2b_amount_b: z.string(),
-    total_exchange_b2a_count: z.number(),
-    total_exchange_b2a_amount_a: z.string(),
-    total_exchange_b2a_amount_b: z.string(),
-    total_exchange_fee_a: z.string(),
-    total_exchange_fee_b: z.string(),
-  }),
-});
-
-const btsAllPools = defineCollection({
-  loader: file("./src/data/bitshares/allPools.json"),
-  schema: allPoolSchema,
-});
-
-const testAllPools = defineCollection({
-  loader: file("./src/data/bitshares_testnet/allPools.json"),
-  schema: allPoolSchema,
-});
-
 const minBitassetSchema = z.object({
   id: z.string(),
   assetID: z.string(),
@@ -409,38 +248,9 @@ const testAssetIssuers = defineCollection({
   schema: assetIssuerSchema,
 });
 
-const minPoolSchema = z.object({
-  id: z.string(),
-  a: z.string(),
-  as: z.string(),
-  b: z.string(),
-  bs: z.string(),
-  sa: z.string(),
-  said: z.string(),
-  ba: z.union([z.string(), z.number()]),
-  bb: z.union([z.string(), z.number()]),
-  tfp: z.number(),
-});
-
-const btsMinPools = defineCollection({
-  loader: file("./src/data/bitshares/minPools.json"),
-  schema: minPoolSchema,
-});
-
-const testMinPools = defineCollection({
-  loader: file("./src/data/bitshares_testnet/minPools.json"),
-  schema: minPoolSchema,
-});
-
 export const collections = {
   btsFeeSchedule,
   testFeeSchedule,
-  btsOffers,
-  testOffers,
-  btsPools,
-  testPools,
-  btsAllPools,
-  testAllPools,
   btsMinBitassets,
   testMinBitassets,
   btsAllAssets,
@@ -452,7 +262,5 @@ export const collections = {
   btsAllDynamicData,
   testAllDynamicData,
   btsAssetIssuers,
-  testAssetIssuers,
-  btsMinPools,
-  testMinPools,
+  testAssetIssuers
 };

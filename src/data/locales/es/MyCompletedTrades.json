@@ -1,8 +1,0 @@
-{
-  "recentlyCompletedBuyOrdersTitle": "Sus órdenes de compra completadas recientemente",
-  "recentlyCompletedSellOrdersTitle": "Tus órdenes de venta completadas recientemente",
-  "recentlyCompletedBuyOrdersDescription": "La siguiente tabla enumera sus órdenes de compra completadas recientemente.",
-  "recentlyCompletedSellOrdersDescription": "La siguiente tabla enumera sus órdenes de venta completadas recientemente.",
-  "noRecentlyCompletedPurchases": "No se encontraron compras completadas recientemente",
-  "noRecentlyCompletedSales": "No se encontraron ventas completadas recientemente"
-}
