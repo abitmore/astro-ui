@@ -1,0 +1,19 @@
+{
+  "buyOrders": "Ostutellimused (pakkumised)",
+  "sellOrders": "Müügitellimused (küsib)",
+  "quoteAsset": "Pakkumise vara",
+  "baseAsset": "Põhivara",
+  "loading": "Laadimine...",
+  "controls": "Turukontroll",
+  "bitsharesMarketExplorer": "🔎 bitsharesi turu uurija",
+  "marketSummary": "Turu kokkuvõte",
+  "latestPrice": "Viimane hind:",
+  "24HrChange": "24h muutus:",
+  "24HrBaseVolume": "24-tunnine baasmaht:",
+  "24HrQuoteVolume": "24h hinnapakkumise maht:",
+  "lowestAsk": "Madalaim küsimus:",
+  "highestBid": "Kõrgeim pakkumine:",
+  "externalMarketLinks": "Välisturu seosed",
+  "buy": "Osta",
+  "sell": "müüa"
+}

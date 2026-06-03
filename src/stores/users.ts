@@ -1,5 +1,6 @@
 import { map } from "nanostores";
 import { persistentMap } from "@nanostores/persistent";
+
 import { setCurrentNode } from "@/stores/node";
 
 type User = {

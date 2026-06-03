@@ -81,8 +81,6 @@ module.exports = require("electron");
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
-(() => {
 /*!************************!*\
   !*** ./src/preload.js ***!
   \************************/
@@ -94,15 +92,17 @@ __webpack_require__.r(__webpack_exports__);
 electron__WEBPACK_IMPORTED_MODULE_0__.contextBridge.exposeInMainWorld("electron", {
   // MISC
   openURL: async (target) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.send("openURL", target), // Links to explorers
-  notify: async (msg) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.send("notify", msg), // Triggering an electron notification prompt
-  registerFaucetAccount: async (args) =>
-    electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("faucetRegistration", args),
-  genKey: async () => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("genKey"),
-  genAccount: async (args) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("genAccount", args),
+  //notify: async (msg) => ipcRenderer.send('notify', msg), // Triggering an electron notification prompt
+  /*
+    setNode: (func) => { // For storing the current connected blockchain node
+        ipcRenderer.on('setNode', (event, args) => {
+            func(args);
+        });
+    },
+    */
   // REST queries
   fetchTopMarkets: async (args) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("fetchTopMarkets", args),
-  fetchAccountHistory: async (args) =>
-    electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("fetchAccountHistory", args),
+  fetchAccountHistory: async (args) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("fetchAccountHistory", args),
   // WS queries
   requestBlocks: async (args) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.send("requestBlocks", args),
   onBlockResponse: (func) => {
@@ -112,17 +112,16 @@ electron__WEBPACK_IMPORTED_MODULE_0__.contextBridge.exposeInMainWorld("electron"
   },
   stopBlocks: async () => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.send("stopBlocks", args),
   // API queries
-  generateDeepLink: async (args) =>
-    electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("generateDeepLink", args),
-  generateQRContents: async (args) =>
-    electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("generateQRContents", args),
-  calculateOperationFees: async (args) =>
-    electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("calculateOperationFees", args),
-  // Ping a node URL from the main process. Returns an object { ok: boolean, status?: number, error?: string }
-  ping: async (url) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("ping", url),
+  generateDeepLink: async (args) => electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.invoke("generateDeepLink", args),
+  /*
+    // For logging background issues to renderer dev console
+    onMainLog: async (func) => {
+        ipcRenderer.on("mainLog", (event, data) => {
+            func(data);
+        })
+    },
+    */
 });
-
-})();
 
 /******/ })()
 ;

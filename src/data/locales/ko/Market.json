@@ -1,0 +1,19 @@
+{
+  "buyOrders": "구매 주문(입찰)",
+  "sellOrders": "매도 주문(요청)",
+  "quoteAsset": "견적 자산",
+  "baseAsset": "기본자산",
+  "loading": "로드 중...",
+  "controls": "시장 통제",
+  "bitsharesMarketExplorer": "🔎 bitshares 시장 탐험가",
+  "marketSummary": "시장 요약",
+  "latestPrice": "최신 가격:",
+  "24HrChange": "24시간 변경:",
+  "24HrBaseVolume": "24시간 기본 볼륨:",
+  "24HrQuoteVolume": "24시간 견적량:",
+  "lowestAsk": "최저 요청:",
+  "highestBid": "최고 입찰가:",
+  "externalMarketLinks": "외부 시장 링크",
+  "buy": "구입하다",
+  "sell": "팔다"
+}

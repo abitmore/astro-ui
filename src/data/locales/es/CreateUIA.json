@@ -1,0 +1,13 @@
+{
+  "dialogContent": {
+    "headerText": "Creando el siguiente activo emitido por el usuario: {{symbol}}"
+  },
+  "card": {
+    "title_create": "Crear un nuevo activo emitido por el usuario",
+    "title_edit": "Edición de un activo emitido por el usuario",
+    "description": "Los activos emitidos por el usuario pueden representar cualquier cosa que desee, se pueden usar para una variedad de propósitos, se pueden usar como token para su negocio, token de recompensa, token para un juego y más."
+  },
+  "buttons": {
+    "submit": "Entregar"
+  }
+}

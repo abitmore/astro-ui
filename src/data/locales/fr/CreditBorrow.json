@@ -1,0 +1,40 @@
+{
+  "common": {
+    "title": " Offre #{{orderID}} par {{owner_name}} ({{owner_account}})",
+    "offer": "Offre",
+    "by": "par",
+    "offering": "Offre",
+    "accepting": "Acceptant",
+    "loading": "Chargement...",
+    "fee": "Frais: {{fee}}%",
+    "repayPeriod": "Période de remboursement : {{repayPeriod}} heures",
+    "validity": "Offre valable pour {{validity}} heures",
+    "min": "Montant minimum : {{amount}} {{asset}}",
+    "proceed": "Procéder à l'offre de crédit #{{offerID}}",
+    "edit": "Modifier l'offre",
+    "view": "Afficher les paramètres"
+  },
+  "card": {
+    "title": "🏦 Visualisation des offres de crédit disponibles",
+    "description": "Les offres de crédit sont générées par les utilisateurs, elles proposent différents taux, actifs et durées, évaluent les conditions avant de créer des offres.",
+    "viewingAll": "Voir toutes les offres",
+    "viewAll": "Voir toutes les offres",
+    "viewingAvailable": "Affichage des commandes compatibles",
+    "viewAvailable": "Afficher les commandes compatibles",
+    "viewingSearch": "Recherche",
+    "viewSearch": "Recherche",
+    "allOffers": "Ces offres de crédit proposent une variété d’actifs empruntables à des taux compétitifs.",
+    "availableOffers": "Ces offres de crédit acceptent les actifs que vous possédez comme garantie de prêt.",
+    "searchPrompt": "Comment voulez-vous effectuer une recherche ?",
+    "borrowSearching": "Recherche par actif empruntable",
+    "borrowSearch": "Recherche par actif empruntable",
+    "collateralSearching": "Recherche par actifs collatéraux",
+    "collateralSearch": "Recherche par actifs collatéraux",
+    "ownerSearching": "Recherche par nom de propriétaire",
+    "ownerSearch": "Rechercher par nom de propriétaire",
+    "noResults": "Aucun résultat trouvé",
+    "loading": "Chargement des offres...",
+    "hideExpired": "Masquer les offres expirées",
+    "showExpired": "Afficher les offres expirées"
+  }
+}

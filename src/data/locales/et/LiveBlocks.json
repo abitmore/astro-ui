@@ -1,0 +1,51 @@
+{
+  "cardTitle": "Reaalajas plokiahela ülevaade",
+  "cardDescription": "Bitsharesi plokiahelal on 3-sekundiline plokiaeg ja see on võimeline käsitlema tuhandeid tehinguid sekundis. See leht annab plokiahelast reaalajas ülevaate.",
+  "currentBlock": {
+    "content": "Viimane ploki number.",
+    "header": "Praegune plokk"
+  },
+  "currentWitness": {
+    "content": "Tunnistaja, kes koostas viimase ploki.",
+    "header": "Praegune tunnistaja"
+  },
+  "tps": {
+    "content": "Tehinguid sekundis viimase aja jooksul {{blockQty}} plokid.",
+    "header": "Tehingud sekundis"
+  },
+  "uniqueWitnesses": {
+    "content": "Unikaalsete tunnistajate arv viimastes plokkides.",
+    "header": "Unikaalsed tunnistajad"
+  },
+  "txPerBlock": {
+    "content": "Keskmine tehingute arv ploki kohta viimase aja jooksul {{blockQty}} plokid.",
+    "header": "Tehingud ploki kohta"
+  },
+  "recentFees": {
+    "content": "Viimasel kogutud tasud kokku {{blockQty}} plokid.",
+    "header": "Viimased tasud"
+  },
+  "chart": {
+    "content": "Tehingute arvu kuvamine ploki kohta viimase aja jooksul {{blockQty}} plokid.",
+    "header": "Tehingud ploki kohta"
+  },
+  "recentActivity": {
+    "content": "Hiljutine tegevus plokiahelas.",
+    "header": "Hiljutine tegevus",
+    "blocks": "Blokeeri",
+    "operations": "Operatsioonid"
+  },
+  "recentBlocks": {
+    "content": "Viimaste plokkide loend.",
+    "header": "Viimased plokid",
+    "blockId": "Blokeeri ID",
+    "timestamp": "Ajatempel",
+    "witnessId": "Tunnistaja ID",
+    "transaction": "Tehing"
+  },
+  "dialogContent": {
+    "json": "JSON-andmed",
+    "jsonDescription": "Valitud üksuse üksikasjalikud JSON-andmed.",
+    "copy": "Kopeeri"
+  }
+}

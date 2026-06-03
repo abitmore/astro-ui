@@ -1,0 +1,59 @@
+{
+  "dealNo": "Tehing nr",
+  "with": " koos ",
+  "borrowed": "Sa laenasid",
+  "lent": "Nad laenasid",
+  "loanCollateral": "Laenu tagatis:",
+  "borrower": "Laenutasu",
+  "lender": "Tulud",
+  "remainingTime": "Järelejäänud aeg:",
+  "repayLoan": "Laen tagasi maksta",
+  "trade": "Kaubandus {{symbol}} DEXis",
+  "dialogTitle": "Laenu #{id} tagasimaksmine",
+  "description": "Kasutage seda vormi oma krediiditehingu tagasimaksete kontrollimiseks.",
+  "account": "konto",
+  "balance": "Sinu praegune {{symbol}} tasakaalu",
+  "repayAmount": "Kogus {{symbol}} tagasi maksma",
+  "remainingDebt": "Järelejäänud võlg: {{amount}} {{symbol}}",
+  "repayDesc": "Kogu tagatise tagasi saamiseks tasuge võlg täielikult tagasi.",
+  "redeemCollateral": "Lunastage tagatis",
+  "remainingCollateral": "Järelejäänud tagatis: {amount} {{symbol}}",
+  "collateralRedemption": "Kogus {{symbol}} tagatistagatis, mille lunastate",
+  "loanLabel": "Eeldatav laenutasu",
+  "loanDesc": "See on tasu, mille maksate laenuandjale.",
+  "finalPaymentLabel": "Lõplik makse",
+  "finalPaymentDesc": "Kui olete täielikult tagasi maksnud, on teie {{symbol}} tagatis tagastatakse teile.",
+  "finalPaymentWarning": "Ebapiisav {{symbol}} tasakaalu",
+  "networkFee": "Võrgutasu",
+  "networkFeeDesc": "See on tasu teie krediiditehingu tagasimaksetoimingu edastamise eest plokiahelasse.",
+  "rebate": "Allahindlus {{fee}} {{chain}} (üleandmine)",
+  "submit": "Esita",
+  "deepLink": "Tagasimaksmine {{finalRepayAmount}} {{debtAsset}}, et nõuda tagasi {{collateralAsset}}",
+  "card": {
+    "title": "💱 Kontrollige oma aktiivseid krediidipakkumisi",
+    "description": "Siit saad nii aktiivseid krediiditehinguid jälgida kui ka tagasimakseid hallata.",
+    "viewingBorrowings": "Teie laenude vaatamine",
+    "viewBorrowings": "Vaadake oma laene",
+    "viewingLendings": "Laenude vaatamine",
+    "viewLendings": "Vaadake oma laene",
+    "noBorrowers": "Aktiivseid laene ei leitud",
+    "noLendings": "Aktiivseid laene ei leitud",
+    "loading": "Laadimine..."
+  },
+  "risks": {
+    "borrowerTitle": "Laenaja riskihoiatus",
+    "lenderTitle": "Laenuandja riskihoiatus",
+    "description": "Oluline teave teie krediiditehingutega seotud kohustuste ja riskide kohta.",
+    "borrower": {
+      "risk1": "Sina ( {{username}} ) vastutavad teie krediiditehingute haldamise ja nende õigeaegse tagasimaksmise eest, mitte keegi teine. Kaaluge automaatse tagasimakse meetodi kasutamist, et vältida tagasimaksetähtaja möödumist, kui võite tähtaja unustada.",
+      "risk2": "Olge teadlik sellest, et krediiditehingu tagasimakseperioodi jooksul olete avatud välistele volatiilsustele, teie laenatud varade ja tagatistagatiste väärtus kõigub. Te peaksite seda volatiilsust arvesse võtma, kui otsustate, kuidas/millal krediiditehingu tagasi maksta.",
+      "risk3": "Krediiditehingu tagasimaksmata jätmine toob kaasa allesjäänud tagatistagatisvarade kaotuse. Puudub krediidiskoori süsteem, mis karistaks kohustusi rikkuvaid laenuvõtjaid, krediiditehingu kokkulepitud tingimusi peetakse kinni."
+    },
+    "lender": {
+      "risk1": "Sina ( {{username}} ) vastutavad teie krediidipakkumiste, nende parameetrite ja riskide haldamise eest, mitte keegi teine. Kaaluge automaatsete skriptide loomist oma krediidipakkumiste oleku haldamiseks.",
+      "risk2": "Olge teadlik sellest, et olete krediiditehingu tagasimakseperioodi ajal avatud välistele volatiilsustele, teistele kasutajatele laenatud varade väärtus ja nende antud tagatistagatis kõikuvad, peaksite oma krediidipakkumise parameetrite üle otsustamisel arvestama oma isikliku riskitaluvusega. ",
+      "risk3": "Laenuandjana, kui krediiditehing on sõlmitud, {{username}} ) ei saa seda tühistada, laenuvõtja vastutab tehingu kestuse eest tagasimakseperioodi piires. Krediiditehingu tagasimakse kuupäev võib ületada ka teie krediidipakkumise aegumiskuupäeva.",
+      "risk4": "Kui laenuvõtjad ei suuda oma krediiditehinguid tagasi maksta, jäävad teie tagatisvarad ilma. Puudub krediidiskoori süsteem, mis karistaks laenuvõtjaid maksejõuetuse eest, krediiditehingu kokkulepitud tingimusi järgitakse alati, nii et planeerige oma krediidipakkumised "
+    }
+  }
+}

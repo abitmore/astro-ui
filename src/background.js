@@ -95,10 +95,134 @@ const createWindow = async () => {
     },
   ]);
 
-  tray.setToolTip("Bitshares Prediction Market Asset Toolkit");
+  tray.setToolTip("Bitshares Astro UI");
 
   tray.on("right-click", (event, bounds) => {
     tray?.popUpContextMenu(contextMenu);
+  });
+
+  let continueFetching = false;
+  let latestBlockNumber = 0;
+  let isFetching = false;
+  let apisInstance = null;
+  let fetchTimeout = null;
+
+  const fetchBlocks = async () => {
+    isFetching = true;
+    while (continueFetching) {
+      let currentBlock;
+      try {
+        currentBlock = await apisInstance
+          .db_api()
+          .exec("get_block", [latestBlockNumber]);
+      } catch (error) {
+        console.log({ error });
+        continueFetching = false;
+        isFetching = false;
+        break;
+      }
+      mainWindow.webContents.send("blockResponse", {
+        ...currentBlock,
+        block: latestBlockNumber,
+      });
+      latestBlockNumber += 1;
+
+      await new Promise((resolve) => {
+        fetchTimeout = setTimeout(resolve, 4200);
+      });
+    }
+
+    if (!continueFetching) {
+      apisInstance.close();
+      apisInstance = null;
+    }
+    isFetching = false;
+  };
+
+  ipcMain.on("requestBlocks", async (event, arg) => {
+    const { url } = arg;
+
+    // Stop any ongoing fetching process
+    if (isFetching) {
+      continueFetching = false;
+      clearTimeout(fetchTimeout); // Clear the timeout to stop the current fetching process immediately
+      await new Promise((resolve) => setTimeout(resolve, 100)); // Short wait to ensure the current fetching process stops
+    }
+
+    // Reset state variables
+    continueFetching = true;
+    isFetching = false;
+
+    // Create a new Apis instance
+    try {
+      apisInstance = Apis.instance(url, true);
+    } catch (error) {
+      console.log({ error, location: "Apis.instance", url });
+      continueFetching = false;
+      isFetching = false;
+      return;
+    }
+
+    try {
+      await apisInstance.init_promise;
+      console.log("connected to:", apisInstance.chain_id);
+    } catch (err) {
+      console.log({ err });
+      continueFetching = false;
+      isFetching = false;
+      if (apisInstance) {
+        apisInstance.close();
+        apisInstance = null;
+      }
+      return;
+    }
+
+    let globalProperties;
+    try {
+      globalProperties = await apisInstance
+        .db_api()
+        .exec("get_dynamic_global_properties", []);
+    } catch (error) {
+      console.log({ error, location: "globalProperties", url });
+      continueFetching = false;
+      isFetching = false;
+      return;
+    }
+
+    latestBlockNumber = globalProperties.head_block_number;
+
+    const blockPromises = [];
+    for (let i = latestBlockNumber - 1; i > latestBlockNumber - 31; i--) {
+      blockPromises.push(apisInstance.db_api().exec("get_block", [i]));
+    }
+
+    let lastFewBlocks = [];
+    try {
+      lastFewBlocks = await Promise.all(blockPromises);
+    } catch (error) {
+      console.log({ error });
+    }
+
+    for (let i = lastFewBlocks.length - 1; i >= 0; i--) {
+      mainWindow.webContents.send("blockResponse", {
+        ...lastFewBlocks[i],
+        block: latestBlockNumber - 1 - i,
+      });
+    }
+
+    // Start fetching blocks continuously
+    fetchBlocks();
+  });
+
+  // Handle the user navigating away from the page
+  ipcMain.on("stopBlocks", () => {
+    continueFetching = false;
+    clearTimeout(fetchTimeout); // Clear the timeout to stop the current fetching process immediately
+    if (apisInstance) {
+      apisInstance.close();
+      apisInstance = null;
+    }
+    isFetching = false;
   });
 
   ipcMain.handle("genKey", async () => {
@@ -199,6 +323,74 @@ const createWindow = async () => {
       };
     }
   });
+
+  /*
+  ipcMain.handle("fetchTopMarkets", async (event, arg) => {
+    const { chain } = arg;
+
+    let retrievedData;
+    try {
+      retrievedData = await fetch(
+        chain === "bitshares"
+          ? `https://api.bitshares.ws/openexplorer/top_markets?top_n=100` // WS DOMAIN HIJACKED!
+          : `https://api.testnet.bitshares.ws/openexplorer/top_markets?top_n=50` // WS DOMAIN HIJACKED!
+      );
+    } catch (error) {
+      console.log({ error });
+    }
+
+    if (!retrievedData || !retrievedData.ok) {
+      console.log("Failed to fetch top markets");
+      return;
+    }
+
+    const topMarkets = await retrievedData.json();
+    return topMarkets ?? null;
+  });
+  */
+
+  /*
+  ipcMain.handle("fetchAccountHistory", async (event, arg) => {
+    const { chain, accountID } = arg;
+
+    const from = arg.from ?? 0;
+    const size = arg.size ?? 100;
+    const from_date = arg.from_date ?? "2015-10-10";
+    const to_date = arg.to_date ?? "now";
+    const sort_by = arg.sort_by ?? "-operation_id_num";
+    const type = arg.type ?? "data";
+    const agg_field = arg.agg_field ?? "operation_type";
+
+    const url =
+      `https://${
+        chain === "bitshares" ? "api" : "api.testnet"
+      }.bitshares.ws/openexplorer/es/account_history` +
+      `?account_id=${accountID}` +
+      `&from_=${from}` +
+      `&size=${size}` +
+      `&from_date=${from_date}` +
+      `&to_date=${to_date}` +
+      `&sort_by=${sort_by}` +
+      `&type=${type}` +
+      `&agg_field=${agg_field}`;
+
+    let history;
+    try {
+      history = await fetch(url, { method: "GET" });
+    } catch (error) {
+      console.log({ error });
+      return null;
+    }
+
+    if (!history || !history.ok) {
+      console.log("Couldn't fetch account history.");
+      return null;
+    }
+
+    const accountHistory = await history.json();
+    return accountHistory ?? null;
+  });
+  */
 
   ipcMain.on("notify", (event, arg) => {
     const NOTIFICATION_TITLE = "Error!";

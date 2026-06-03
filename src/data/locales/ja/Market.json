@@ -1,0 +1,19 @@
+{
+  "buyOrders": "買い注文（入札）",
+  "sellOrders": "売り注文（アスク）",
+  "quoteAsset": "資産の見積もり",
+  "baseAsset": "基本資産",
+  "loading": "読み込み中...",
+  "controls": "市場管理",
+  "bitsharesMarketExplorer": "🔎 bitshares マーケットエクスプローラー",
+  "marketSummary": "市場概要",
+  "latestPrice": "最新の価格:",
+  "24HrChange": "24時間の変更:",
+  "24HrBaseVolume": "24時間の基本量:",
+  "24HrQuoteVolume": "24 時間の見積もり量:",
+  "lowestAsk": "最低の質問:",
+  "highestBid": "最高入札額:",
+  "externalMarketLinks": "外部市場へのリンク",
+  "buy": "買う",
+  "sell": "売る"
+}

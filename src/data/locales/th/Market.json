@@ -1,0 +1,19 @@
+{
+  "buyOrders": "คำสั่งซื้อ (ราคาเสนอ)",
+  "sellOrders": "คำสั่งขาย (ถาม)",
+  "quoteAsset": "อ้างอิงสินทรัพย์",
+  "baseAsset": "สินทรัพย์ฐาน",
+  "loading": "กำลังโหลด...",
+  "controls": "การควบคุมตลาด",
+  "bitsharesMarketExplorer": "🔎 นักสำรวจตลาด bitshares",
+  "marketSummary": "สรุปตลาด",
+  "latestPrice": "ราคาล่าสุด:",
+  "24HrChange": "การเปลี่ยนแปลง 24 ชั่วโมง:",
+  "24HrBaseVolume": "ปริมาตรพื้นฐาน 24 ชม.:",
+  "24HrQuoteVolume": "ปริมาณการเสนอราคา 24 ชั่วโมง:",
+  "lowestAsk": "ถามต่ำสุด:",
+  "highestBid": "ราคาเสนอสูงสุด:",
+  "externalMarketLinks": "ลิงค์ตลาดภายนอก",
+  "buy": "ซื้อ",
+  "sell": "ขาย"
+}
